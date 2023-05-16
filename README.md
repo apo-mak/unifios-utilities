@@ -1,11 +1,11 @@
 # unifios-utilities [![Discord](https://img.shields.io:/discord/939817841107034172?label=Discord&logo=Discord&style=for-the-badge "Discord")](https://discord.gg/8zqrQJFghg)
 
 [![UDM Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml/badge.svg)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udm.yml)
-[![UDM-Pro-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.ymlpodman-udmp-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml)
+[![UDM-Pro-SE Podman](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml/badge.svg?branch=main)](https://github.com/unifi-utilities/unifios-utilities/actions/workflows/podman-udmp-udmse.yml)
 
 ## Branches
 1. [1.12.x](https://github.com/unifi-utilities/unifios-utilities/tree/v1.12.x) - Support for 1.x.x firmware line
-1. [main](https://github.com/unifi-utilities/unifios-utilities) - Support for 2.5.x and above
+1. [main](https://github.com/unifi-utilities/unifios-utilities) - Support for 2.4.x and above
 
 ### Current Branch is main, supporting 2.5.x
 -----
@@ -31,7 +31,10 @@ Standard Image for base UDM, systemd removed
 
 ### UDM Pro / SE
 Base build with apparmor, systemd, devicemapper removal, and overlay kept
-Works on PRO on 2.x, for 1.x use the UDM Base still.
+
+Works on PRO on 2.x, for 1.x use the UDM Base still. 
+
+*Does not work on 3.x use nspawn-container*
 
 ## macvlan kernel module for UDR
 
@@ -41,7 +44,7 @@ at [macvlan-unifi-udr](https://github.com/whi-tw/macvlan-unifi-udr).
 
 ## General Tools
 
-### on-boot-script
+### on-boot-script-2.x
 
 Do this first. Enables `init.d` style scripts to run on every boot of your UDM.
 Includes examples to run `wpa-supplicant/eap-proxy` and/or `ntop-ng` on startup.
@@ -49,10 +52,16 @@ Follow this [readme](https://github.com/unifi-utilities/unifios-utilities/blob/m
 
 **It enables complete customization of your UDM/P and fills the gap that config.gateway.json left behind.**
 
+### nspawn-container
+Enables containers on UniFiOS 3.x,  this replaces podman.
+
 ### podman-update
 
-Updates Podman, conmon, and runc to a recent version.
-This allows docker-compose usage as well.
+Updates Podman, conmon, and runc to a recent version.This allows docker-compose usage as well.
+
+Works on PRO on 2.x, for 1.x use the UDM Base still. 
+
+**Does not working on 3.x use nspawn-container**
 
 ### container-common
 
@@ -64,11 +73,6 @@ Updates container defaults to maintain **stable disk usage footprint** of custom
 
 If you need python3 on your UDM, generally not recommended, can always use it in unifi-os container.
 
-### UDM Persistent SSH Keys Script
-
-<https://github.com/fire1ce/UDM-Persistent-SSH-Keys>
-
-Script to persist ssh keys after reboot or firmware update.
 
 ## VPN Servers / Clients
 | Name 	| URL 	| Description 	|
@@ -142,7 +146,7 @@ Update your cloudflare domains from your UDM with podman.
 |------	|-----	|-------------	|
 |suricata |   	| Updates suricata to a recent version.  Now in firmware    	|
 | Jumbo Frames   	| <https://github.com/kalenarndt/udmp-jumbo-frames> 	|   native jumbo frame support for the UDM and UDM-Pro is added in the 1.12.13 EA firmware, support for the UDM-SE is not yet announced.   	|
-
+| UDM Persistent SSH Keys Script | <https://github.com/fire1ce/UDM-Persistent-SSH-Keys> | Stores SSH Keys. This functionality is now in firmware
 
 ## Reimaging your UDM
 
